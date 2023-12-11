@@ -14,6 +14,10 @@ class LessonResource extends Resource
 {
     protected static ?string $model = Lesson::class;
 
+    protected static ?string $modelLabel = 'Lección';
+
+    protected static ?string $pluralModelLabel = 'Lecciones';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static bool $shouldRegisterNavigation = false;

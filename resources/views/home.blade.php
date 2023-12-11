@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1 class="text-3xl text-center font-semibold">All Courses</h1>
+    <h1 class="text-3xl text-center font-semibold">Cursos</h1>
     <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-8">
         @foreach($courses as $course)
             <a href="{{ route('courses.show', $course) }}">

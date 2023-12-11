@@ -19,9 +19,16 @@ class MyCoursesResource extends Resource
 {
     protected static ?string $model = Course::class;
 
+    protected static ?string $modelLabel = 'Curso';
+
+    protected static ?string $pluralModelLabel = 'Mis Cursos';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static ?string $navigationLabel = 'My Courses';
+    public static function getNavigationLabel(): string
+    {
+        return 'Mis Cursos';
+    }
 
     public static function table(Table $table): Table
     {
@@ -33,13 +40,17 @@ class MyCoursesResource extends Resource
                         SpatieMediaLibraryImageColumn::make('Featured Image')
                             ->collection('featured_image')
                             ->extraImgAttributes(['class' => 'w-full rounded'])
-                            ->height('auto'),
+                            ->height('auto')
+                            ->label('Imagen'),
                         TextColumn::make('title')
                             ->weight(FontWeight::SemiBold)
-                            ->size(TextColumnSize::Large),
+                            ->size(TextColumnSize::Large)
+                            ->label('Nombre'),
                         TextColumn::make('description')
-                            ->html(),
-                        ProgressColumn::make('Progress'),
+                            ->html()
+                            ->label('Descripción'),
+                        ProgressColumn::make('Progress')
+                            ->label('Progreso'),
                     ]),
             ])
             ->contentGrid(['md' => 2, 'xl' => 3])

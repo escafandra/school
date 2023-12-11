@@ -18,6 +18,10 @@ class LessonResource extends Resource
 {
     protected static ?string $model = Lesson::class;
 
+    protected static ?string $modelLabel = 'Lección';
+
+    protected static ?string $pluralModelLabel = 'Lecciones';
+
     protected static bool $shouldRegisterNavigation = false;
 
     public static function getRecordTitle(?Model $record): string|Htmlable|null
@@ -31,10 +35,13 @@ class LessonResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->columnSpanFull()
-                    ->required(),
+                    ->required()
+                    ->label('Nombre'),
                 RichEditor::make('lesson_text')
-                    ->columnSpanFull(),
-                Checkbox::make('is_published'),
+                    ->columnSpanFull()
+                    ->label('Contenido'),
+                Checkbox::make('is_published')
+                    ->label('Está publicada'),
             ]);
     }
 
@@ -42,8 +49,10 @@ class LessonResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('position'),
-                TextColumn::make('title'),
+                TextColumn::make('position')
+                    ->label('Posición'),
+                TextColumn::make('title')
+                    ->label('Nombre'),
             ])
             ->actions([
                 // ...

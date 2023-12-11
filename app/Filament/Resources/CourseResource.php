@@ -31,6 +31,8 @@ class CourseResource extends Resource
 {
     protected static ?string $model = Course::class;
 
+    protected static ?string $modelLabel = 'Curso';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function getRecordTitle(?Model $record): string|Htmlable|null
@@ -44,15 +46,19 @@ class CourseResource extends Resource
             ->schema([
                 Group::make()
                     ->schema([
-                        TextInput::make('title')->required(),
-                        RichEditor::make('description'),
-                        Checkbox::make('is_published'),
+                        TextInput::make('title')->required()
+                            ->label('Nombre'),
+                        RichEditor::make('description')
+                            ->label('Descripción'),
+                        Checkbox::make('is_published')
+                            ->label('Está Publicado'),
                     ])
                     ->columnSpan(2),
                 Group::make()
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('Featured Image')
-                            ->collection('featured_image'),
+                            ->collection('featured_image')
+                            ->label('Imagen'),
                     ]),
             ])
             ->columns(3);
@@ -63,17 +69,20 @@ class CourseResource extends Resource
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('Featured Image')
-                    ->collection('featured_image'),
-                TextColumn::make('title'),
+                    ->collection('featured_image')
+                    ->label('Imagen'),
+                TextColumn::make('title')
+                    ->label('Nombre'),
                 TextColumn::make('lessons_count')
                     ->counts('lessons')
-                    ->badge(),
+                    ->badge()
+                    ->label('Número de lecciones'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Action::make('Manage lessons')
+                Action::make('Lecciones')
                     ->color('success')
                     ->icon('heroicon-m-academic-cap')
                     ->url(fn (Course $record): string => self::getUrl('lessons.index', [

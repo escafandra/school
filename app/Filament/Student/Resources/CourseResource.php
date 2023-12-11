@@ -22,6 +22,8 @@ class CourseResource extends Resource
 {
     protected static ?string $model = Course::class;
 
+    protected static ?string $modelLabel = 'Curso';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function getRecordTitle(?Model $record): string|Htmlable|null
@@ -31,7 +33,7 @@ class CourseResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return 'All Courses';
+        return 'Todos los Cursos';
     }
 
     public static function form(Form $form): Form
@@ -52,12 +54,15 @@ class CourseResource extends Resource
                         SpatieMediaLibraryImageColumn::make('Featured Image')
                             ->collection('featured_image')
                             ->extraImgAttributes(['class' => 'w-full rounded'])
-                            ->height('auto'),
+                            ->height('auto')
+                            ->label('Imagen'),
                         TextColumn::make('title')
                             ->weight(FontWeight::SemiBold)
-                            ->size(TextColumnSize::Large),
+                            ->size(TextColumnSize::Large)
+                            ->label('Nombre'),
                         TextColumn::make('description')
-                            ->html(),
+                            ->html()
+                            ->label('Descripción'),
                     ]),
             ])
             ->contentGrid(['md' => 2, 'xl' => 3])

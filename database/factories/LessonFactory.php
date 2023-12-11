@@ -13,9 +13,9 @@ class LessonFactory extends Factory
     public function definition()
     {
         return [
-            'title' => rtrim(fake()->sentence(), '.'),
+            'title'       => rtrim(fake()->sentence(), '.'),
             'lesson_text' => fake()->realText(),
-            'course_id' => Course::factory(),
+            'course_id'   => Course::factory(),
         ];
     }
 

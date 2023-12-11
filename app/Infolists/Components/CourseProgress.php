@@ -36,7 +36,7 @@ class CourseProgress extends Component
         return $this->progress;
     }
 
-    public function getProgressMax():int
+    public function getProgressMax(): int
     {
         return $this->progressMax;
     }

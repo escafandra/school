@@ -13,7 +13,7 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'title' => rtrim(fake()->sentence(), '.'),
+            'title'       => rtrim(fake()->sentence(), '.'),
             'description' => fake()->realText(),
         ];
     }

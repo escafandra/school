@@ -11,10 +11,13 @@
 |
 */
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\AdminTestCase;
+
 uses(
-    Tests\TestCase::class,
-    Illuminate\Foundation\Testing\RefreshDatabase::class,
-)->in('Feature');
+    AdminTestCase::class,
+    RefreshDatabase::class,
+)->in('Feature/Admin');
 
 /*
 |--------------------------------------------------------------------------

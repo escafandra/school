@@ -46,7 +46,8 @@ class CourseResource extends Resource
             ->schema([
                 Group::make()
                     ->schema([
-                        TextInput::make('title')->required()
+                        TextInput::make('title')
+                            ->required()
                             ->label('Nombre'),
                         RichEditor::make('description')
                             ->label('Descripción'),

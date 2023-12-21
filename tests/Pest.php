@@ -13,12 +13,17 @@
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\AdminTestCase;
+use Tests\StudentTestCase;
 
 uses(
     AdminTestCase::class,
     RefreshDatabase::class,
 )->in('Feature/Admin');
 
+uses(
+    StudentTestCase::class,
+    RefreshDatabase::class,
+)->in('Feature/Student');
 /*
 |--------------------------------------------------------------------------
 | Expectations
@@ -44,8 +49,3 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-
-function something()
-{
-    // ..
-}

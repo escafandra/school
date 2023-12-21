@@ -35,10 +35,7 @@ class CourseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function getRecordTitle(?Model $record): string|Htmlable|null
-    {
-        return $record->title;
-    }
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Form $form): Form
     {
@@ -79,9 +76,6 @@ class CourseResource extends Resource
                     ->badge()
                     ->label('Número de lecciones'),
             ])
-            ->filters([
-                //
-            ])
             ->actions([
                 Action::make('Lecciones')
                     ->color('success')
@@ -99,13 +93,6 @@ class CourseResource extends Resource
             ->defaultSort('id', 'desc');
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
@@ -113,7 +100,6 @@ class CourseResource extends Resource
             'create' => CreateCourse::route('/create'),
             'edit'   => EditCourse::route('/{record}/edit'),
 
-            // Lessons
             'lessons.index'  => ListLessons::route('/{parent}/lessons'),
             'lessons.create' => CreateLesson::route('/{parent}/lessons/create'),
             'lessons.edit'   => EditLesson::route('/{parent}/lessons/{record}/edit'),

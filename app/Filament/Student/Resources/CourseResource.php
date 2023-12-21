@@ -6,6 +6,7 @@ use App\Filament\Student\Resources\CourseResource\Pages\ListCourses;
 use App\Filament\Student\Resources\CourseResource\Pages\ViewCourse;
 use App\Filament\Student\Resources\LessonResource\Pages\ViewLesson;
 use App\Models\Course;
+use Filament\Facades\Filament;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\FontWeight;
@@ -26,22 +27,11 @@ class CourseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function getRecordTitle(?Model $record): string|Htmlable|null
-    {
-        return $record->title;
-    }
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function getNavigationLabel(): string
     {
         return 'Todos los Cursos';
-    }
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
     }
 
     public static function table(Table $table): Table
@@ -71,13 +61,6 @@ class CourseResource extends Resource
             ->modifyQueryUsing(fn (Builder $query) => $query->published());
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
@@ -86,5 +69,14 @@ class CourseResource extends Resource
 
             'lessons.view' => ViewLesson::route('/{parent}/lessons/{record}'),
         ];
+    }
+
+    public static function getUrl(string $name = 'index', array $parameters = [], bool $isAbsolute = true, ?string $panel = 'student', Model $tenant = null): string
+    {
+        $parameters['tenant'] ??= ($tenant ?? Filament::getTenant());
+
+        $routeBaseName = static::getRouteBaseName(panel: $panel);
+
+        return route("{$routeBaseName}.{$name}", $parameters, $isAbsolute);
     }
 }

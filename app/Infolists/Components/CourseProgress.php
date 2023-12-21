@@ -2,7 +2,6 @@
 
 namespace App\Infolists\Components;
 
-use Closure;
 use Filament\Infolists\Components\Component;
 
 class CourseProgress extends Component

@@ -7,7 +7,6 @@ use App\Filament\Student\Resources\CourseResource\Pages\ViewCourse;
 use App\Filament\Student\Resources\LessonResource\Pages\ViewLesson;
 use App\Models\Course;
 use Filament\Facades\Filament;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\Layout\Grid;
@@ -15,7 +14,6 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Table;
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,7 +1,6 @@
 <?php
 
 use App\Filament\Resources\CourseResource;
-use App\Filament\Resources\LessonResource;
 use App\Filament\Resources\LessonResource\Pages\CreateLesson;
 use App\Filament\Resources\LessonResource\Pages\EditLesson;
 use App\Filament\Resources\LessonResource\Pages\ListLessons;

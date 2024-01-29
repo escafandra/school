@@ -2,6 +2,6 @@
     <x-filament::button
         wire:click="toggleCompleted"
     >
-        {{ $getRecord()->isCompleted() ? 'Mark as uncomplete' : 'Mark as complete' }}
+        {{ $getRecord()->isCompleted() ? 'Marcar como incompleto' : 'Marcar como completado' }}
     </x-filament::button>
 </div>

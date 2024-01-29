@@ -37,9 +37,9 @@ class Lesson extends Model
     {
         $lessons = $this->course->publishedLessons()->get();
 
-        $currentIndex = $lessons->search(fn (Lesson $lesson) => $lesson->is($this));
+        $currentIndex = (int) $lessons->search(fn (Lesson $lesson) => $lesson->is($this));
 
-        if ($currentIndex === $lessons->keys()->last()) {
+        if ($currentIndex === (int) $lessons->keys()->last()) {
             return null;
         }
 
@@ -50,7 +50,7 @@ class Lesson extends Model
     {
         $lessons = $this->course->publishedLessons()->get();
 
-        $currentIndex = $lessons->search(fn (Lesson $lesson) => $lesson->is($this));
+        $currentIndex = (int) $lessons->search(fn (Lesson $lesson) => $lesson->is($this));
 
         if ($currentIndex === 0) {
             return null;

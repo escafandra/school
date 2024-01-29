@@ -23,7 +23,6 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Route;
 
@@ -35,10 +34,7 @@ class CourseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function getRecordTitle(?Model $record): string|Htmlable|null
-    {
-        return $record->title;
-    }
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Form $form): Form
     {
@@ -46,7 +42,8 @@ class CourseResource extends Resource
             ->schema([
                 Group::make()
                     ->schema([
-                        TextInput::make('title')->required()
+                        TextInput::make('title')
+                            ->required()
                             ->label('Nombre'),
                         RichEditor::make('description')
                             ->label('Descripción'),
@@ -78,9 +75,6 @@ class CourseResource extends Resource
                     ->badge()
                     ->label('Número de lecciones'),
             ])
-            ->filters([
-                //
-            ])
             ->actions([
                 Action::make('Lecciones')
                     ->color('success')
@@ -98,13 +92,6 @@ class CourseResource extends Resource
             ->defaultSort('id', 'desc');
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
@@ -112,7 +99,6 @@ class CourseResource extends Resource
             'create' => CreateCourse::route('/create'),
             'edit'   => EditCourse::route('/{record}/edit'),
 
-            // Lessons
             'lessons.index'  => ListLessons::route('/{parent}/lessons'),
             'lessons.create' => CreateLesson::route('/{parent}/lessons/create'),
             'lessons.edit'   => EditLesson::route('/{parent}/lessons/{record}/edit'),

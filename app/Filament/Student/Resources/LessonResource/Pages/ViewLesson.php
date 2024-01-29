@@ -9,12 +9,14 @@ use App\Infolists\Components\CompleteButton;
 use App\Infolists\Components\CourseProgress;
 use App\Infolists\Components\LessonPaginator;
 use App\Infolists\Components\ListLessons;
+use App\Models\Lesson;
 use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\TextEntry\TextEntrySize;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Http\RedirectResponse;
 
 class ViewLesson extends ViewRecord
 {
@@ -61,6 +63,7 @@ class ViewLesson extends ViewRecord
 
     public function toggleCompleted(): void
     {
+        /** @var Lesson $lesson */
         $lesson = $this->getRecord();
 
         $lesson->isCompleted()
@@ -68,7 +71,7 @@ class ViewLesson extends ViewRecord
             : $lesson->markAsCompleted();
     }
 
-    public function markAsCompletedAndGoToNext()
+    public function markAsCompletedAndGoToNext(): RedirectResponse
     {
         $lesson = $this->getRecord();
         $lesson->markAsCompleted();
